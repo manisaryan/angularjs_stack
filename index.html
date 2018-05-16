@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CodeMeterTest</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"> </script>
+  <script src="./lib/angular.min.js"></script>
+  <script src="./lib/angular-ui-router.js"></script>
+  <script src="./lib/angular-resource.min.js"></script>
+  <script src="./lib/angular-mocks.js"></script>
+  
+  
+  <link rel="stylesheet" href="./css/styles/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="./css/style.css"></link>
+
+  <script src="./src/app/app.module.js"></script>
+  <script src="./src/app/app.config.js"></script>
+  <script src="./src/app/app.backend.module.js"></script>
+  <script src="./src/app/core/product/product.service.module.js"></script>
+  <script src="./src/app/core/product/product.service.js"></script>
+  <script src="./src/app/utils/utils.module.js"></script>
+  <script src="./src/app/utils/validate.directive.js"></script>
+  <script src="./src/app/utils/check.directive.js"></script>
+  <script src="./src/app/core/product/product.service.js"></script>
+  <script src="./src/app/admin/admin.module.js"></script>
+  <script src="./src/app/admin/admin.list.product.component.js"></script>
+  <script src="./src/app/admin/admin.add.product.component.js"></script>
+  <script src="./src/app/admin/admin.edit.product.component.js"></script>
+  <script src="./src/app/product/product.module.js"></script>
+  <script src="./src/app/product/productcomponent.js"></script>
+  <script src="./src/app/about/about.module.js"></script>
+  <script src="./src/app/about/aboutcomponent.js"></script>
+  <script src="./matrix.js"></script>
+  <script src="./nn.js"></script>
+  <script src="./test.js"></script>
+
+</head>
+<body>
+    <script>
+        // Notice there is no 'import' statement. 'tf' is available on the index-page
+        // because of the script tag above.
+  
+        // Define a model for linear regression.
+        const model = tf.sequential();
+        model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+  
+        // Prepare the model for training: Specify the loss and the optimizer.
+        model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+  
+        // Generate some synthetic data for training.
+        const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+        const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+  
+        // Train the model using the data.
+        model.fit(xs, ys).then(() => {
+          // Use the model to do inference on a data point the model hasn't seen before:
+          // Open the browser devtools to see the output
+          model.predict(tf.tensor2d([10], [1, 1])).print();
+        });
+      </script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Product Management System</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Main Menu <span class="sr-only">(current)</span></a></li>
+            <li><a ui-sref="admin">Admin</a></li>
+            <li><a ui-sref="product">Product</a></li>
+            <li><a ui-sref="about">About</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div ui-view>
+          </div>
+        </div>
+      </div>
+    </div>
+</html>

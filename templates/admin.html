@@ -1,0 +1,28 @@
+<div class="page-header"><a class="btn btn-success" ui-sref="add">Add Product</a></div>
+<canvas id="glCanvas" width="640" height="480"></canvas>
+<div class="row list-group">
+    <div class="item  col-xs-4 col-lg-4 list-group-item" ng-repeat='product in model.products | filter: {isDeleted: false}: true'>
+        <div class="thumbnail">
+            <img class="group list-group-image" src="../images/produts.jpg" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    {{product.name}}</h4>
+                <p class="group inner list-group-item-text">
+                    {{product.description}}</p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            Rs.{{product.price}}
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <button class="btn btn-info" ui-sref="edit({id: product.id})" >
+                      Edit</button>
+                      <button class="btn btn-danger" href="#" confirm-click='Do you want to delete this?' confirmed-click='model.deleteProduct(product)'>Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span ng-if='$ctrl.products.length == 0'>No product available yet.</span>
+</div>

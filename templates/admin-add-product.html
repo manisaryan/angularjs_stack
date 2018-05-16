@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <h1>Add New Product</h1>
+          <form name="productForm" novalidate rc-submit="$ctrl.addProduct()">
+            <div class="form-group"
+              ng-class="{'has-error': rc.productForm.needsAttention(productForm.productname)}">
+             <input class="form-control" name="productname" type="text" 
+              placeholder="Product Name" required ng-model="$ctrl.product.name" />
+             <span class="help-block" 
+              ng-show="productForm.productname.$error.required">Required</span>
+            </div>
+            <div class="form-group"
+              ng-class="{'has-error': rc.productForm.needsAttention(productForm.productprice)}">
+             <input class="form-control" name="productprice" type="number" 
+              placeholder="Product Price" required ng-model="$ctrl.product.price" />
+             <span class="help-block" 
+              ng-show="productForm.productprice.$error.required">Required</span>
+            </div>
+            <div class="form-group"
+              ng-class="{'has-error': rc.productForm.needsAttention(productForm.productdescription)}">
+             <input class="form-control" name="productdescription" type="text" 
+              placeholder="Product Description" required ng-model="$ctrl.product.description" />
+             <span class="help-block" 
+              ng-show="productForm.productdescription.$error.required">Required</span>
+            </div>
+            
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary pull-right" 
+                value="Add" title="product">
+                <span>Add</span>
+              </button>
+            </div>
+          </form>
+        </div>
+</div>

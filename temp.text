@@ -1,0 +1,47 @@
+//.component('adminTab', {
+//     transclude: true,
+//     controller: function MyTabsController() {
+//         var panes = this.panes = [];
+//         this.select = function (pane) {
+//             angular.forEach(panes, function (pane) {
+//                 pane.selected = false;
+//             });
+//             pane.selected = true;
+//         };
+//         this.addPane = function (pane) {
+//             if (panes.length === 0) {
+//                 this.select(pane);
+//             }
+//             panes.push(pane);
+//         };
+//     },
+//     template: `<div class="tabs-left">
+//                     <ul class="nav nav-tabs" >
+//                         <li ng-repeat="pane in $ctrl.panes" ng-class="{active:pane.selected}" >
+//                             <a href="" ng-click="$ctrl.select(pane)">
+//                                 <div class="checkbox">
+//                                     <label><input type="checkbox" ng-model= 'pane.selected'>{{pane.title}}</label>
+//                                 </div>
+//                             </a>
+                            
+//                         </li>
+//                     </ul>
+//                     <div class="tab-content" ng-transclude></div>
+//                 </div>
+//                 `
+// }).component('adminPane', {
+//       transclude: true,
+//       require: {
+//           tabsCtrl: '^adminTab'
+//       },
+//       bindings: {
+//           title: '@'
+//       },
+//       controller: function () {
+//           this.$onInit = function () {
+//               this.tabsCtrl.addPane(this);
+//               console.log(this);
+//           };
+//       },
+//       template: `<div class="tab-pane" ng-show="$ctrl.selected" ng-transclude></div>`
+//   })

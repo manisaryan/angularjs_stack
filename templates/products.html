@@ -1,0 +1,21 @@
+<div class=" row list-group">
+    <div class="item  col-xs-4 col-lg-4 grid-group-item" ng-repeat='product in $ctrl.products | filter: {isDeleted: false}: true'>
+        <div class="thumbnail">
+            <img class="group list-group-image" src="../images/last_bit_of_green_.jpg" alt="" />
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    {{product.name}}</h4>
+                <p class="group inner list-group-item-text">
+                    {{product.description}}</p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <p class="lead">
+                            Rs.{{product.price}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span ng-if='$ctrl.products.length == 0'>No product available yet.</span>
+</div>
