@@ -3,7 +3,7 @@
 angular.module('admin')
 
 .component('adminListProductComponent', {
-  	templateUrl:'./../../../templates/admin.html',
+  	templateUrl:'./../../../angularjs_stack/templates/admin.html',
   	bindings: { products: '<' },
   	controllerAs: "model",
   	controller: function($scope, Poroduct, $state) {
